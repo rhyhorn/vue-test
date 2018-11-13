@@ -1,0 +1,22 @@
+.game-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 2%;
+
+  text-align: center;
+
+  &__item {
+    box-sizing: border-box;
+
+    width: 33%;
+    padding: 5px;
+  }
+
+  &__show-more {
+    display: flex;
+    justify-content: center;
+    width: 82%;
+
+    margin-top: 20px;
+  }
+}

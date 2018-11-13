@@ -1,0 +1,21 @@
+.footer {
+  padding: 10px 2%;
+
+  &__payments {
+    max-width: 100%;
+  }
+
+  &__contact-link {
+    display: block;
+    margin: 5% auto;
+
+    font-size: 1.1em;
+    color: rgb(189, 196, 202);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  &__support {
+    width: 82%;
+  }
+}

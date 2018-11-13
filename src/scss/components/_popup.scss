@@ -1,0 +1,64 @@
+.popup {
+  height: 100vh;
+  width: 100vw;
+
+  position: relative;
+  right: 0px;
+
+  background: rgb(20, 22, 32);
+
+  &__head {
+    display: flex;
+    width: 100%;
+    height: 55px;
+
+    position: absolute;
+
+    background-image: linear-gradient(
+                    rgb(12, 16, 33),
+                    rgb(37, 39, 54) 87%,
+                    rgb(27, 29, 43)
+    );
+  }
+
+  &__close {
+    width: 60px;
+    height: 100%;
+    border-right: 1px solid rgb(13, 17, 34);
+
+    position: relative;
+
+    background: url('https://vulkanstars-club.com/static/mobile/images/base/nav-arrow.png') center center no-repeat;
+
+    &:after {
+      content: "";
+      width: 1px;
+      height: 100%;
+
+      position: absolute;
+      right: -2px;
+      top: 0px;
+
+      background: rgb(37, 41, 61);
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  &__body {
+    position: absolute;
+    top: 55px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+
+    overflow-y: scroll;
+  }
+}

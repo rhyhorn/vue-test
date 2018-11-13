@@ -1,0 +1,27 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  background: rgb(20, 22, 32);
+
+  color: rgb(255, 255, 255);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+@import "reset";
+
+@import "components/btn";
+
+@import "layouts/body";
+@import "layouts/app";
+@import "layouts/footer";
+@import "layouts/header";
+@import "layouts/popup-layout";
+
+@import "components/slider";
+@import "components/game-filter";
+@import "components/game-list";
+@import "components/game-thumb";
+@import "components/popup";
+

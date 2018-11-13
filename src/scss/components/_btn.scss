@@ -1,0 +1,48 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 300px;
+  height: 50px;
+  padding: 0px 10px;
+  margin: 0px auto;
+
+  border-radius: 5px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 10px;
+
+  font-size: 0.75rem;
+
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 50px;
+  text-decoration: none;
+
+  &--default {
+    background: linear-gradient(
+                    rgb(127, 177, 236) 2%,
+                    rgb(102, 149, 205) 0px,
+                    rgb(66, 113, 186) 50%,
+                    rgb(55, 99, 168) 0px,
+                    rgb(2, 41, 126)
+    );
+  }
+
+  &--primary {
+    background: linear-gradient(
+                    0deg,
+                    rgb(17, 73, 40),
+                    rgb(41, 140, 47) 51%,
+                    rgb(58, 158, 64) 0px,
+                    rgb(128, 219, 79) 99%,
+                    rgb(218, 255, 186) 0px
+    );
+  }
+}

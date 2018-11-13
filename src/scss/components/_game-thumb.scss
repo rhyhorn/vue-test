@@ -1,0 +1,27 @@
+.game-thumb {
+  border-radius: 10px;
+  background-image: linear-gradient(
+                  0deg,
+                  rgb(21, 69, 109),
+                  rgb(7, 52, 89) 3%,
+                  rgb(5, 36, 66) 45%
+  );
+
+  &__img {
+    max-width: 100%;
+    height: auto;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  &__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+
+    text-align: center;
+    color: rgb(255, 255, 255);
+  }
+}

@@ -1,0 +1,27 @@
+.game-filter {
+  display: flex;
+  max-width: 100%;
+
+  padding: 10px 10px 0px;
+
+  overflow-x: auto;
+
+  &__item {
+    min-width: 128px;
+    padding: 10px;
+    margin-right: 8px;
+
+    border: 2px solid rgb(148, 150, 159);
+    border-radius: 30px;
+
+    font-size: 20px;
+    text-align: center;
+    color: rgb(148, 150, 159);
+    text-transform: capitalize;
+
+    &--selected {
+      border-color: rgb(255, 210, 61);
+      color: rgb(255, 210, 61);
+    }
+  }
+}
