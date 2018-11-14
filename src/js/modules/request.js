@@ -1,9 +1,0 @@
-class Request {
-    constructor() {
-
-    }
-
-    make() {
-
-    }
-}
