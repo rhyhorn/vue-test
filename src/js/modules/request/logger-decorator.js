@@ -1,16 +1,4 @@
-import {addLeadingZero} from '../helpers';
-
-const getTimeStamp = () => {
-    const date = new Date();
-
-    const parts = {
-        hours: addLeadingZero(date.getHours()),
-        minutes: addLeadingZero(date.getMinutes()),
-        seconds: addLeadingZero(date.getSeconds()),
-    };
-
-    return `[${parts.hours}:${parts.minutes}:${parts.seconds}]`;
-};
+import {getTimeStamp} from '../../classes/Logger';
 
 export const loggerDecorator = (request) => {
     const targetFunction = request.make;

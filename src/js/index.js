@@ -3,6 +3,8 @@ import WidgetFactory from './modules/widget-factory';
 import Application from './modules/application';
 import Request from './modules/request/request';
 
+import ApplicationLoggerDecorator from './modules/application-logger';
+
 import GameList from './widgets/game-list';
 import Slider from './widgets/slider';
 import PopupManager from './widgets/popup-manager';
@@ -26,7 +28,8 @@ const registry = new Registry({
 
 const widgetFactory = new WidgetFactory();
 
-const app = new Application(document.body, registry, widgetFactory);
+let app = new Application(document.body, registry, widgetFactory);
+app = new ApplicationLoggerDecorator(app);
 
 document.addEventListener('DOMContentLoaded', () => {
     app.init();

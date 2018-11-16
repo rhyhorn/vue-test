@@ -20,7 +20,7 @@ describe('Registry module', () => {
         expect(registry.get('key1.key3.key5')).toBe(undefined);
     });
 
-    it('should correct set data to registry', () => {
+    it('should correctly set data to registry', () => {
         let registry = new Registry({
             testKey: 1
         });
