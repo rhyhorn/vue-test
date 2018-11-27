@@ -1,4 +1,8 @@
 export default class Request {
+  constructor(requestObject) {
+    this.requestObject = requestObject;
+  }
+
   get(url) {
     return this.make(url, {
       method: 'GET'
