@@ -1,0 +1,17 @@
+.login-form {
+  padding: 10px;
+  margin: 0px 10px 10px;
+  border-radius: 10px;
+
+  background: rgb(23, 26, 42);
+
+  &__submit {
+    @extend .btn;
+    @extend .btn--primary;
+    @extend .btn--block;
+
+    width: 100%;
+    margin-top: 15px;
+    font-size: 1.2em;
+  }
+}

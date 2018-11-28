@@ -1,41 +1,64 @@
-export function notNull() {
+export const minLength = (length) => {
+  return (value) => {
+    if (value === '') {
+      return true;
+    }
+
+    return (value.length >= length);
+  };
+};
+
+export const required = () => {
   return (value) => {
     return value !== '';
   };
 };
 
-export function minLength(length) {
+export const email = () => {
   return (value) => {
-    return value.length >= length;
+    if (value === '') {
+      return true;
+    }
+
+    return (value.indexOf('@') !== -1);
   };
 };
 
 export default class Form {
-  constructor(initData) {
+  constructor(initData = {}) {
     this.defaultError = 'invalid_field';
     this.fields = {};
     this.rules = {};
     this.errors = {};
     this.errorMessages = {};
 
+    this.addField = this.addField.bind(this);
     this.resetField = this.resetField.bind(this);
 
     Object.keys(initData).forEach((field) => {
-      this.fields[field] = '';
-      this.errors[field] = [];
-      this.errorMessages[field] = [];
-      this.rules[field] = {};
-
-      Object.keys(initData[field]).forEach((ruleName) => {
-        let [
-          rule,
-          error = this.defaultError,
-        ] = initData[field][ruleName];
-
-        this.setRule(field, ruleName, rule);
-        this.setErrorMessage(field, ruleName, error);
-      });
+      this.addField(field, initData[field]);
     });
+  }
+
+  addField(fieldName, rules = {}) {
+    this.fields[fieldName] = '';
+    this.rules[fieldName] = {};
+    this.errors[fieldName] = [];
+    this.errorMessages[fieldName] = [];
+
+    Object.keys(rules).forEach((ruleName) => {
+      const [
+        rule,
+        errorMessage = this.defaultError,
+      ] = rules[ruleName];
+
+      this.setRule(fieldName, ruleName, rule);
+      this.setErrorMessage(fieldName, ruleName, errorMessage);
+    });
+  }
+
+  getFields() {
+    return this.fields;
   }
 
   setRule(fieldName, ruleName, rule) {
@@ -72,16 +95,17 @@ export default class Form {
 
       let errors = [];
 
-      Object.keys(rules).forEach((validatorName) => {
-        const validator = rules[validatorName];
+      Object.keys(rules).forEach((ruleName) => {
+        const validator = rules[ruleName];
 
         if (validator(fieldValue) === false) {
-          const errorMessage = this.getErrorMessage(fieldName, validatorName);
+          const errorMessage = this.getErrorMessage(fieldName, ruleName);
           errors.push(errorMessage);
         }
       });
 
       this.errors[fieldName] = errors;
+
       if (errors.length > 0) {
         hasAnyError = true;
       }

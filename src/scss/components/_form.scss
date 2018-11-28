@@ -1,0 +1,55 @@
+.form {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+  &__input {
+    width: 100%;
+    height: 50px;
+
+    padding: 0px 15px;
+    border: 2px solid rgb(45, 48, 68);
+    border-radius: 3px;
+
+    background: rgb(20, 22, 32);
+
+    color: rgb(255, 255, 255);
+    font: 700 0.95em Arial;
+
+    resize: none;
+    outline: none;
+
+    &--has-error {
+      box-shadow: rgba(178, 36, 52, 0.7) 0px 0px 15px 6px inset;
+      border-color: rgb(178, 36, 52);
+    }
+  }
+
+  &__input-error {
+    display: none;
+    margin: 5px 0px;
+
+    color: rgb(178, 36, 52);
+    font-size: 0.95em;
+    text-align: left;
+    line-height: 1.2em;
+  }
+
+  &__row {
+    margin: 5px 0px 10px;
+
+    &:last-child {
+      margin-bottom: 5px;
+    }
+
+    &--has-error {
+      .form {
+        &__input {
+          @extend .form__input--has-error;
+        }
+
+        &__input-error {
+          display: block;
+        }
+      }
+    }
+  }
+}
