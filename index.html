@@ -9,122 +9,125 @@
 </head>
 <body>
 
-    <div class="app">
-        <div class="app__header header">
-            <img class="header__logo"
-                 src="https://vulkanstars-club.com/static/mobile/images/vulkancasino/logo.png"
-            />
+<div class="app">
+    <div class="app__header header">
+        <img class="header__logo"
+             src="https://vulkanstars-club.com/static/mobile/images/vulkancasino/logo.png"
+        />
 
-            <div class="header__auth-group">
-                <a href="#/popup/login"
-                   class="header__auth-btn btn btn--primary"
-                >
-                    Регистрация
-                </a>
-                <a href="#/popup/register"
-                   class="header__auth-btn btn btn--default"
-                >
-                    Войти
-                </a>
-            </div>
-        </div>
-        <div class="app__content">
-
-            <div data-module="widgets.LoginForm"></div>
-
-            <div class="slider"
-                 data-module="widgets.Slider"
+        <div class="header__auth-group">
+            <a href="#/popup/login"
+               class="header__auth-btn btn btn--primary"
             >
-                <div class="slider__item"
-                     v-for="slide in slides"
-                >
-                    <img v-bind:src="slide.imgSlider"/>
-                </div>
-            </div>
-            <div data-module="widgets.GameList"
-                 v-cloak
-            >
-                <div class="game-filter">
-                    <div class="game-filter__item"
-                         v-bind:class="{'game-filter__item--selected': currentCategory === null}"
-                         v-on:click="changeCategory(null)"
-                    >
-                        all
-                        <span class="game-filter__item-count"
-                              v-if="currentCategory === null"
-                        >
-                        &nbsp;{{filteredGames.length}}
-                    </span>
-                    </div>
-                    <div class="game-filter__item"
-                         v-for="category in categories"
-                         v-bind:class="{'game-filter__item--selected': currentCategory === category.id}"
-                         v-on:click="changeCategory(category.id)"
-                    >
-                        {{ category.name }}
-                        <span class="game-filter__item-count"
-                              v-if="currentCategory === category.id"
-                        >
-                        &nbsp;{{filteredGames.length}}
-                    </span>
-                    </div>
-                </div>
-
-                <div class="game-list">
-                    <div class="game-list__item"
-                         v-for="game in visibleGames"
-                    >
-                        <div class="game-thumb">
-                            <img class="game-thumb__img"
-                                 src="https://cdn.vulkanstars-club.com/cdn/open/games/c1bca532837c9c9d3d09e82b98a30a05.jpg"
-                            />
-                            <div class="game-thumb__name">
-                                {{ game.name }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <a class="game-list__show-more btn btn--primary"
-                       href="#"
-                       v-show="showMoreButton"
-                       v-on:click.prevent="showMoreGames"
-                    >
-                        show more
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="app__footer footer">
-            <img class="footer__payments"
-                 src="https://vulkanstars-club.com/static/mobile/images/base/payment-systems.png"
-            />
-            <a class="footer__contact-link"
-               href="tel:+74993460330"
-            >
-                <i class="icon--phone"></i>
-                +7 (499) 346-03-30
+                Регистрация
             </a>
-            <a class="footer__contact-link"
-               href="mailto:support@vulkanstars.com"
-               target="_top"
+            <a href="#/popup/register"
+               class="header__auth-btn btn btn--default"
             >
-                <i class="icon--email"></i>
-                <span>support@vulkanstars.com</span>
+                Войти
             </a>
-            <a class="footer__support btn btn--primary"
-               href="#"
-            >
-                <i class="icon--support"></i>
-                <span>Служба поддержки</span>
-            </a>
-        </div>
-        <div class="app__popup-layout"
-             data-module="widgets.PopupManager"
-        >
-            <popup-manager></popup-manager>
         </div>
     </div>
+    <div class="app__content">
 
+        <div data-module="widgets.LoginForm"></div>
+
+        <div class="slider"
+             data-module="widgets.Slider"
+        >
+            <div class="slider__item"
+                 v-for="slide in slides"
+            >
+                <img v-bind:src="slide.imgSlider"/>
+            </div>
+        </div>
+        <div data-module="widgets.GameList"
+             v-cloak
+        >
+            <div class="game-filter">
+                <div class="game-filter__item"
+                     v-bind:class="{'game-filter__item--selected': currentCategory === null}"
+                     v-on:click="changeCategory(null)"
+                >
+                    all
+                    <span class="game-filter__item-count"
+                          v-if="currentCategory === null"
+                    >
+                        &nbsp;{{filteredGames.length}}
+                    </span>
+                </div>
+                <div class="game-filter__item"
+                     v-for="category in categories"
+                     v-bind:class="{'game-filter__item--selected': currentCategory === category.id}"
+                     v-on:click="changeCategory(category.id)"
+                >
+                    {{ category.name }}
+                    <span class="game-filter__item-count"
+                          v-if="currentCategory === category.id"
+                    >
+                        &nbsp;{{filteredGames.length}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="game-list">
+                <div class="game-list__item"
+                     v-for="game in visibleGames"
+                >
+                    <div class="game-thumb">
+                        <img class="game-thumb__img"
+                             src="https://cdn.vulkanstars-club.com/cdn/open/games/c1bca532837c9c9d3d09e82b98a30a05.jpg"
+                        />
+                        <div class="game-thumb__name">
+                            {{ game.name }}
+                        </div>
+                    </div>
+                </div>
+
+                <a class="game-list__show-more btn btn--primary"
+                   href="#"
+                   v-show="showMoreButton"
+                   v-on:click.prevent="showMoreGames"
+                >
+                    show more
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="app__footer footer">
+        <img class="footer__payments"
+             src="https://vulkanstars-club.com/static/mobile/images/base/payment-systems.png"
+        />
+        <a class="footer__contact-link"
+           href="tel:+74993460330"
+        >
+            <i class="icon--phone"></i>
+            +7 (499) 346-03-30
+        </a>
+        <a class="footer__contact-link"
+           href="mailto:support@vulkanstars.com"
+           target="_top"
+        >
+            <i class="icon--email"></i>
+            <span>support@vulkanstars.com</span>
+        </a>
+        <a class="footer__support btn btn--primary"
+           href="#"
+        >
+            <i class="icon--support"></i>
+            <span>Служба поддержки</span>
+        </a>
+    </div>
+    <div class="app__popup-layout"
+         data-module="widgets.PopupManager"
+    >
+        <popup-manager></popup-manager>
+    </div>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer></script>
 <script src="dst/main.js"></script>
+
 </body>
 </html>
