@@ -1,6 +1,6 @@
 export default class Request {
-  constructor(requestObject) {
-    this.requestObject = requestObject;
+  constructor(fetch) {
+    this.fetch = fetch;
   }
 
   get(url) {
@@ -16,7 +16,7 @@ export default class Request {
   }
 
   make(url, options) {
-    return fetch(url, options)
+    return this.fetch(url, options)
       .then(response => response.json());
   }
 }

@@ -17,7 +17,6 @@
                     {{errors.email[0]}}
                 </div>
             </div>
-
             <div class="form__row"
                  v-bind:class="{'form__row--has-error': errors.password.length > 0}"
             >
@@ -32,7 +31,6 @@
                     {{errors.password[0]}}
                 </div>
             </div>
-
             <div class="form__row">
                 <button class="login-form__submit"
                         type="submit"
@@ -40,29 +38,29 @@
                     Save
                 </button>
             </div>
-
-            {{errors}}
         </form>
+
+        {{errors}}
+
     </div>
 
 </template>
 <script>
-  const login = () => {
-    return Promise.reject({});
-  };
-
   import Form from '../classes/form';
-  import {minLength, required, email} from '../classes/form';
+  import {required, email, minLength} from '../classes/form';
+
+  import authApi from '../api/auth';
 
   const form = new Form({
-    email: {
-      required: [required(), 'Заполните поле "email"'],
-      email: [email(), 'Введите корректный "email"'],
-    },
-    password: {
-      required: [required(), 'Заполните поле "пароль"'],
-    }
-  });
+      email: {
+        required: [required, 'Заполните поле "email"'],
+        email: [email, 'Введите корректный "email"'],
+      },
+      password: {
+        required: [required, 'Заполните поле "пароль"'],
+        minLength: [minLength(5), 'МИнимальная длинна 5 симолов'],
+      }
+    });
 
   export default {
     data() {
@@ -80,23 +78,12 @@
           return;
         }
 
-        login(form.getFields())
+        authApi.login(form.getFields())
           .then((response) => {
-
+            console.log('success', response);
           })
           .catch((response) => {
-            if (response.code !== VALIDATION_ERROR_RESPONSE) {
-              return;
-            }
-
-            const fields = form.getFields();
-            const errors = reponse.getErrorsFor(fields);
-
-            if (errors === null) {
-              return;
-            }
-
-            form.setErrors(errors);
+            console.log('error', response);
           })
 
       }

@@ -8,20 +8,16 @@ export const minLength = (length) => {
   };
 };
 
-export const required = () => {
-  return (value) => {
+export const required = (value) => {
     return value !== '';
-  };
 };
 
-export const email = () => {
-  return (value) => {
+export const email = (value) => {
     if (value === '') {
       return true;
     }
 
     return (value.indexOf('@') !== -1);
-  };
 };
 
 export default class Form {

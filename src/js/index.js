@@ -27,3 +27,14 @@ let app = new Application(document.body, registry, widgetFactory);
 document.addEventListener('DOMContentLoaded', () => {
   app.init();
 });
+
+
+import request from './modules/request';
+
+request.get('json/games.json')
+  .then(() => {
+    console.log('success');
+  })
+  .catch(() => {
+    console.log('error');
+  });

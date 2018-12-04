@@ -17,6 +17,12 @@
     resize: none;
     outline: none;
 
+    transition: border 200ms, box-shadow 200ms;
+
+    &:focus {
+      border-color: rgb(83, 130, 195);
+    }
+
     &--has-error {
       box-shadow: rgba(178, 36, 52, 0.7) 0px 0px 15px 6px inset;
       border-color: rgb(178, 36, 52);

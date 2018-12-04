@@ -13,7 +13,13 @@ export const getTimeStamp = () => {
 };
 
 export default class Logger {
+  groupCollapsed(...args) {
+    console.groupCollapsed(getTimeStamp(), ...args);
+  }
+  groupEnd(...args) {
+    console.groupEnd(...args);
+  }
   log(...args) {
-    console.log(...args);
+    console.log(getTimeStamp(), ...args);
   }
 }

@@ -15,22 +15,3 @@
     "version": "1.0"
   }
 }
-
-{
-  "_xsrf": "2|4ffce5ce|11fd3e5df8653c16794b1451194298cc|1540833631",
-  "data": {},
-  "navigation_sub": "login",
-  "navigation_main": "ajax",
-  "captcha": false,
-  "flash_messages": [],
-  "user": null,
-  "action": "login",
-  "DEBUG": false,
-  "_errors": {
-    "general": {
-      "code": "login_failed",
-      "params": {}
-    }
-  },
-  "result": 0
-}

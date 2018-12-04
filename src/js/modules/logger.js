@@ -1,4 +1,4 @@
-import Logger from '../classes/Logger';
+import Logger from '../classes/logger';
 
 const logger = new Logger();
 
