@@ -16,7 +16,6 @@ export default class Request {
   }
 
   make(url, options) {
-    return this.fetch(url, options)
-      .then(response => response.json());
+    return this.fetch(url, options);
   }
 }

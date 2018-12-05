@@ -35,7 +35,8 @@
                  v-if="fields.captcha !== undefined"
                  v-bind:class="{'form__row--has-error': errors.captcha.length > 0}"
             >
-                <captcha siteKey="captchaSiteKey"
+                <captcha v-bind:siteKey="captchaSiteKey"
+                         ref="captcha"
                 ></captcha>
                 <div class="form__input-error"
                      v-if="errors.captcha.length > 0"
@@ -66,19 +67,19 @@
   import authApi from '../api/auth';
 
   const form = new Form({
-    email: {
-      required: [required, 'Заполните поле "email"'],
-      email: [email, 'Введите корректный "email"'],
-    },
-    password: {
-      required: [required, 'Заполните поле "пароль"'],
-      minLength: [minLength(5), 'МИнимальная длинна 5 симолов'],
-    }
+    email: [
+      [required, 'Заполните поле "email"'],
+      [email, 'Введите корректный "email"']
+    ],
+    password: [
+      [required, 'Заполните поле "пароль"'],
+      [minLength(5), 'Минимальная длинна 5 симолов'],
+    ]
   });
 
-  const captchaRules = {
-    required: [required, 'Пройдите каптчу'],
-  };
+  const captchaRules = [
+    [required, 'Пройдите каптчу'],
+  ];
 
   export default {
     components: {
@@ -93,13 +94,14 @@
     },
     created() {
       this.form = form;
-      this.captchaSiteKey = '6LfHsiQUAAAAACriCWNkvXLih5--c8HN9CkngaYy';
-      this.enableCaptcha();
+      this.captchaSiteKey = '6Lf1s34UAAAAAE80owqmLzOrfe5M69JYrU6hJiyJ';
+      // this.enableCaptcha();
     },
     methods: {
       submit() {
         if (this.isCaptcha === true) {
-          form.fields.captcha = 5;
+          form.fields.captcha = this.$refs.captcha.getValue();
+          console.log(this.$refs.captcha);
         }
 
         if (form.validate() === false) {
@@ -112,14 +114,17 @@
           })
           .catch((response) => {
             if (this.isCaptcha === true) {
+              this.$refs.captcha.reset();
               return;
             }
 
-            if (response.meta.captcha === true) {
-              this.enableCaptcha();
-              form.setError('captcha', 'Превышено кол-во попыток, введите каптчу');
+            if (response.meta.captcha === false) {
+              return;
             }
-          })
+
+            this.enableCaptcha();
+            form.setError('captcha', 'Превышено кол-во попыток, введите каптчу');
+          });
 
       },
       enableCaptcha() {
@@ -127,8 +132,9 @@
           return;
         }
 
-        this.isCaptcha = true;
         form.addField('captcha', captchaRules);
+        this.fields = {...form.fields};
+        this.isCaptcha = true;
       }
     }
   }

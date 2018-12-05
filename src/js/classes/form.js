@@ -9,15 +9,15 @@ export const minLength = (length) => {
 };
 
 export const required = (value) => {
-    return value !== '';
+  return value !== '';
 };
 
 export const email = (value) => {
-    if (value === '') {
-      return true;
-    }
+  if (value === '') {
+    return true;
+  }
 
-    return (value.indexOf('@') !== -1);
+  return (value.indexOf('@') !== -1);
 };
 
 export default class Form {
@@ -36,37 +36,29 @@ export default class Form {
     });
   }
 
-  addField(fieldName, rules = {}) {
+  addField(fieldName, rules = []) {
     this.fields[fieldName] = '';
-    this.rules[fieldName] = {};
+    this.rules[fieldName] = [];
     this.errors[fieldName] = [];
     this.errorMessages[fieldName] = [];
 
-    Object.keys(rules).forEach((ruleName) => {
+    rules.forEach((ruleData) => {
       const [
         rule,
         errorMessage = this.defaultError,
-      ] = rules[ruleName];
+      ] = ruleData;
 
-      this.setRule(fieldName, ruleName, rule);
-      this.setErrorMessage(fieldName, ruleName, errorMessage);
-    });
+      this.setRule(fieldName, rule);
+      this.errorMessages[fieldName].push(errorMessage);
+    })
   }
 
   getFields() {
     return this.fields;
   }
 
-  setRule(fieldName, ruleName, rule) {
-    this.rules[fieldName][ruleName] = rule;
-  }
-
-  getErrorMessage(fieldName, validatorName) {
-    return this.errorMessages[fieldName][validatorName];
-  }
-
-  setErrorMessage(fieldName, ruleName, message) {
-    this.errorMessages[fieldName][ruleName] = message;
+  setRule(fieldName, rule) {
+    this.rules[fieldName].push(rule);
   }
 
   setError(filedName, error) {
@@ -89,22 +81,16 @@ export default class Form {
       const rules = this.rules[fieldName];
       const fieldValue = this.fields[fieldName];
 
-      let errors = [];
-
-      Object.keys(rules).forEach((ruleName) => {
-        const validator = rules[ruleName];
-
-        if (validator(fieldValue) === false) {
-          const errorMessage = this.getErrorMessage(fieldName, ruleName);
+      this.errors[fieldName] = rules.reduce((errors, rule, index) => {
+        if (rule(fieldValue) === false) {
+          const errorMessage = this.errorMessages[fieldName][index];
           errors.push(errorMessage);
         }
-      });
 
-      this.errors[fieldName] = errors;
+        return errors;
+      }, []);
 
-      if (errors.length > 0) {
-        hasAnyError = true;
-      }
+      hasAnyError = (this.errors[fieldName].length > 0);
     });
 
     return (hasAnyError === false);

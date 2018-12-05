@@ -34,7 +34,7 @@
         }, id => {
           this.widgetId = id;
           this.$emit('render', id);
-        })
+        });
       }
     },
     mounted() {
